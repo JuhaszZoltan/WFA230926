@@ -16,6 +16,14 @@ namespace WFA230926
         {
             InitializeComponent();
             btnStart.Click += BtnStart_Click;
+            nudSor.ValueChanged += NudSO_ValueChanged;
+            nudOszlop.ValueChanged += NudSO_ValueChanged;
+        }
+
+        private void NudSO_ValueChanged(object sender, EventArgs e)
+        {
+            int optAknaSzam = (int)(nudSor.Value * nudOszlop.Value * .2m);
+            nudAknaSzam.Value = optAknaSzam;
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
