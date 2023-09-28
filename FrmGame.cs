@@ -48,7 +48,6 @@ namespace WFA230926
 
         private void InitAknamezo()
         {
-            //chk
             Aknamezo = new Button[Sorok, Oszlopok];
             for (int s = 0; s < Aknamezo.GetLength(0); s++)
             {
@@ -61,31 +60,104 @@ namespace WFA230926
                             y: s * 50,
                             width: 50,
                             height: 50),
+                        BackColor = Color.LightGray,
+                        Font = new Font("Arial", 26, FontStyle.Bold),
                     };
-                    Aknamezo[s, o].Click += AknamezoBtn_Click;
+                    Aknamezo[s, o].MouseUp += AknamezoBtn_MouseUp;
                     this.Controls.Add(Aknamezo[s, o]);
                 }
             }
         }
 
-        private void AknamezoBtn_Click(object sender, EventArgs e)
+        private void AknamezoBtn_MouseUp(object sender, MouseEventArgs e)
         {
-            var crds = MatrixIndexOf(sender as Button);
-            if (AknaPos[crds.s, crds.o])
+            if (e.Button == MouseButtons.Right 
+                && (sender as Button).Text.Length == 0)
             {
-                //theend
-                (sender as Button).BackColor = Color.Red;
+                if ((sender as Button).BackColor == Color.Black)
+                {
+                    (sender as Button).BackColor = Color.LightGray;
+                }
+                else (sender as Button).BackColor = Color.Black;
             }
-            else
+            else if (e.Button == MouseButtons.Left)
             {
-                int kasz = KornyezoAknakSzam(crds);
-                (sender as Button).Text = $"{kasz}";
+                var crds = MatrixIndexOf(sender as Button);
+                if (AknaPos[crds.s, crds.o])
+                {
+                    //theend
+                    (sender as Button).BackColor = Color.Red;
+                }
+                else
+                {
+                    int kasz = KornyezoAknakSzam(crds);
+                    (sender as Button).BackColor = Color.White;
+
+                    switch (kasz)
+                    {
+                        case 0: (sender as Button).ForeColor = Color.LightGray; break;
+                        case 1: (sender as Button).ForeColor = Color.Blue; break;
+                        case 2: (sender as Button).ForeColor = Color.DarkGreen; break;
+                        case 3: (sender as Button).ForeColor = Color.Red; break;
+                        case 4: (sender as Button).ForeColor = Color.DarkBlue; break;
+                        case 5: (sender as Button).ForeColor = Color.DarkRed; break;
+                        case 6: (sender as Button).ForeColor = Color.Cyan; break;
+                        case 7: (sender as Button).ForeColor = Color.Black; break;
+                        case 8: (sender as Button).ForeColor = Color.Gray; break;
+                        default: throw new Exception("hiba");
+                    }
+
+                    (sender as Button).Text = $"{kasz}";
+
+                    if (kasz == 0)
+                    {
+                        var kornyezoGombok = GetKornyezoGombok(sender as Button);
+                        foreach (var btn in kornyezoGombok)
+                        {
+                            AknamezoBtn_MouseUp(btn, e);
+                        }
+                    }
+
+                }
             }
+        }
+
+        private List<Button> GetKornyezoGombok(Button button)
+        {
+            var crds = MatrixIndexOf(button);
+            var kornyezoGombok = new List<Button>();
+            for (int s = crds.s - 1; s <= crds.s + 1; s++)
+            {
+                for (int o = crds.o - 1; o <= crds.o + 1; o++)
+                {
+                    if ((s != crds.s || o != crds.o)
+                        && s >= 0
+                        && s < Aknamezo.GetLength(0)
+                        && o >= 0
+                        && o < Aknamezo.GetLength(1)
+                        && Aknamezo[s, o].Text.Length == 0)
+                        kornyezoGombok.Add(Aknamezo[s, o]);
+                }
+            }
+            return kornyezoGombok;
         }
 
         private int KornyezoAknakSzam((int s, int o) crds)
         {
-            throw new NotImplementedException();
+            int aknakSzama = 0;
+            for (int s = crds.s-1; s <= crds.s+1; s++)
+            {
+                for (int o = crds.o-1; o <= crds.o+1; o++)
+                {
+                    if ((s != crds.s || o != crds.o)
+                        && s >= 0
+                        && s < AknaPos.GetLength(0)
+                        && o >= 0
+                        && o < AknaPos.GetLength(1)
+                        && AknaPos[s, o]) aknakSzama++;
+                }
+            }
+            return aknakSzama;
         }
 
         private (int s, int o) MatrixIndexOf(Button button)
