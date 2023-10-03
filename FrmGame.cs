@@ -68,7 +68,7 @@ namespace WFA230926
                         TextAlign = ContentAlignment.MiddleCenter,
                     };
                     Aknamezo[s, o].MouseUp += AknamezoBtn_MouseUp;
-                    this.Controls.Add(Aknamezo[s, o]);
+                    pnlGameArea.Controls.Add(Aknamezo[s, o]);
                 }
             }
         }
