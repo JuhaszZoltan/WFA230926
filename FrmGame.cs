@@ -16,14 +16,16 @@ namespace WFA230926
         public int Oszlopok { get; set; }
         public int Sorok { get; set; }
         public int Aknak { get; set; }
+        public int UiScale { get; set; }
         public Button[,] Aknamezo { get; set; }
         public bool[,] AknaPos { get; set; }
 
-        public FrmGame(int o, int s, int a)
+        public FrmGame(int o, int s, int a, int u)
         {
             Oszlopok = o;
             Sorok = s;
             Aknak = a;
+            UiScale = u;
             InitializeComponent();
             InitAknamezo();
             InitAknaPos();
@@ -56,12 +58,14 @@ namespace WFA230926
                     Aknamezo[s, o] = new Button()
                     {
                         Bounds = new Rectangle(
-                            x: o * 50,
-                            y: s * 50,
-                            width: 50,
-                            height: 50),
+                            x: o * UiScale,
+                            y: s * UiScale,
+                            width: UiScale,
+                            height: UiScale),
                         BackColor = Color.LightGray,
-                        Font = new Font("Arial", 26, FontStyle.Bold),
+                        Font = new Font("Arial", (UiScale / 2) * .8f, FontStyle.Bold),
+                        Margin = Padding.Empty,
+                        TextAlign = ContentAlignment.MiddleCenter,
                     };
                     Aknamezo[s, o].MouseUp += AknamezoBtn_MouseUp;
                     this.Controls.Add(Aknamezo[s, o]);

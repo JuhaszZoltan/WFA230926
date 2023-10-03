@@ -35,9 +35,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.nudAknaSzam = new System.Windows.Forms.NumericUpDown();
             this.btnStart = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nudUiScale = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudSor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOszlop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAknaSzam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUiScale)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(81, 92);
+            this.label2.Location = new System.Drawing.Point(81, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 20);
             this.label2.TabIndex = 0;
@@ -77,7 +80,7 @@
             // 
             // nudOszlop
             // 
-            this.nudOszlop.Location = new System.Drawing.Point(156, 90);
+            this.nudOszlop.Location = new System.Drawing.Point(156, 78);
             this.nudOszlop.Minimum = new decimal(new int[] {
             1,
             0,
@@ -95,7 +98,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 136);
+            this.label3.Location = new System.Drawing.Point(33, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 20);
             this.label3.TabIndex = 0;
@@ -108,7 +111,7 @@
             0,
             0,
             0});
-            this.nudAknaSzam.Location = new System.Drawing.Point(156, 134);
+            this.nudAknaSzam.Location = new System.Drawing.Point(156, 110);
             this.nudAknaSzam.Name = "nudAknaSzam";
             this.nudAknaSzam.Size = new System.Drawing.Size(64, 26);
             this.nudAknaSzam.TabIndex = 1;
@@ -127,12 +130,50 @@
             this.btnStart.Text = "Játék indítása!";
             this.btnStart.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(65, 159);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "UI méret:";
+            // 
+            // nudUiScale
+            // 
+            this.nudUiScale.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudUiScale.Location = new System.Drawing.Point(156, 157);
+            this.nudUiScale.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudUiScale.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nudUiScale.Name = "nudUiScale";
+            this.nudUiScale.Size = new System.Drawing.Size(64, 26);
+            this.nudUiScale.TabIndex = 1;
+            this.nudUiScale.Value = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(254, 306);
             this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.nudUiScale);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.nudAknaSzam);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nudOszlop);
@@ -142,10 +183,11 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "Aknakereső - setup";
             ((System.ComponentModel.ISupportInitialize)(this.nudSor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOszlop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAknaSzam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUiScale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +202,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudAknaSzam;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown nudUiScale;
     }
 }
 

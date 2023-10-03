@@ -32,7 +32,8 @@ namespace WFA230926
             _ = new FrmGame(
                 o: (int)nudOszlop.Value,
                 s: (int)nudSor.Value,
-                a: (int)nudAknaSzam.Value)
+                a: (int)nudAknaSzam.Value,
+                u: (int)nudUiScale.Value)
                 .ShowDialog();
             this.Show();
         }
